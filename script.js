@@ -58,9 +58,14 @@ $(function () {
     let divTop2 = $(".wrap1 div:nth-child(2)").offset().top - 450;
     let divTop3 = $(".wrap1 div:nth-child(3)").offset().top - 450;
     let divTop4 = $(".wrap1 div:nth-child(4)").offset().top - 550;
+
     scTop > divTop1 ? $(".wrap2 div:first-child").addClass("on") : $(".wrap2 div:first-child").removeClass("on");
     scTop > divTop2 ? $(".wrap2 div:nth-child(2)").addClass("on") : $(".wrap2 div:nth-child(2)").removeClass("on");
     scTop > divTop3 ? $(".wrap2 div:nth-child(3)").addClass("on") : $(".wrap2 div:nth-child(3)").removeClass("on");
     scTop > divTop4 ? $(".wrap2 div:nth-child(4)").addClass("on") : $(".wrap2 div:nth-child(4)").removeClass("on");
+
+    scTop > $(".wrap1 > div").offset().top - 100
+      ? $(".wrap2 > div, .highlight").addClass("active")
+      : $(".wrap2 > div, .highlight").removeClass("active");
   });
 });
