@@ -58,6 +58,8 @@ $(function () {
     let divTop2 = $(".wrap1 div:nth-child(2)").offset().top - 450;
     let divTop3 = $(".wrap1 div:nth-child(3)").offset().top - 450;
     let divTop4 = $(".wrap1 div:nth-child(4)").offset().top - 550;
+    let videoVi = $(".videoVi").offset().top + 400;
+    let laborH = $(".labor").offset().top - 1000;
 
     scTop > divTop1 ? $(".wrap2 div:first-child").addClass("on") : $(".wrap2 div:first-child").removeClass("on");
     scTop > divTop2 ? $(".wrap2 div:nth-child(2)").addClass("on") : $(".wrap2 div:nth-child(2)").removeClass("on");
@@ -67,5 +69,16 @@ $(function () {
     scTop > $(".wrap1 > div").offset().top - 100
       ? $(".wrap2 > div, .highlight").addClass("active")
       : $(".wrap2 > div, .highlight").removeClass("active");
+
+    scTop > videoVi ? $(".textVi").addClass("on") : $(".textVi").removeClass("on");
+
+    if (scTop > laborH) {
+      $(".wrap2 > div, .highlight").removeClass("active");
+      $(".wrap2 > div").css({ bottom: "0", top: "auto" });
+    } else {
+      $(".wrap2 > div").css({ bottom: "auto", top: "0" });
+    }
+    console.log("LABOR" + laborH);
+    console.log("SCT" + scTop);
   });
 });
