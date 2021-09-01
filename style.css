@@ -1,7 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Poor+Story&family=Sunflower:wght@300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   background: rgba(216, 195, 143, 0.25);
+  transition: 0.3s;
+}
+
+body.on {
+  background: #afad16b9;
 }
 
 .textVi {
@@ -47,19 +59,32 @@ body {
 }
 
 .textVi.on .text_wrap h1 {
+  animation: h1 1.5s linear infinite alternate;
+}
+
+@keyframes h1 {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+
+.textVi.on .text_wrap h1 {
   color: #000;
 }
 
 .textVi:hover .kang {
-  animation: kang ease-in-out 0.3s infinite alternate;
+  animation: kang ease-out 0.3s infinite alternate;
 }
 
 @keyframes kang {
   from {
-    transform: rotate(10deg);
+    transform: translateY(-0px);
   }
   to {
-    transform: rotate(-10deg);
+    transform: translateY(-45px);
   }
 }
 
@@ -384,11 +409,42 @@ div.on {
 
 .labor {
   position: relative;
-  width: 95%;
+  width: 86%;
+  height: 2800px;
   margin: 0 auto;
 }
 
-.labor .no_more_farm {
+.labor .back_orange {
+  position: absolute;
+  right: 0;
+  width: 400px;
+}
+
+.labor .back_orange:nth-child(1) {
+  top: 350px;
+  right: -5%;
+  transform: rotate(30deg);
+}
+.labor .back_orange:nth-child(2) {
+  transform: rotate(-5deg);
+  top: 1000px;
+  left: 0;
+}
+.labor .back_orange:nth-child(3) {
+  transform: rotate(-15deg);
+  top: 1900px;
+}
+.labor .back_orange:nth-child(4) {
+  transform: rotate(35deg);
+  top: 2300px;
+  left: 0%;
+}
+
+.labor .back_orange img {
+  width: 100%;
+}
+
+/* .labor .no_more_farm {
   width: max-content;
   position: absolute;
   padding: 20px 0;
@@ -396,15 +452,13 @@ div.on {
   top: 600px;
   z-index: -5;
   transform: rotate(-25deg);
-  /* transform: translateX(-50%); */
-  /* animation: nomorefarm linear 20s infinite; */
 }
 
 .labor .no_more_farm span {
   font-size: 60px;
   color: #fff;
   margin: 0 16px;
-}
+} */
 
 @keyframes nomorefarm {
   from {
@@ -417,37 +471,124 @@ div.on {
 
 .labor ul li {
   display: flex;
-  width: 70%;
-  margin-top: 96px;
+  width: 74%;
+  margin-top: 150px;
+  opacity: 0;
 }
 
 .labor ul li:nth-child(odd) {
   float: left;
+  transform: rotate(-5deg);
+}
+
+.labor ul li:nth-child(odd) dl {
+  margin-left: 32px;
 }
 
 .labor ul li:nth-child(even) {
   float: right;
   text-align: right;
+  transform: rotate(5deg);
 }
 
-.labor ul li div {
+.labor ul li:nth-child(even) dl {
+  margin-right: 32px;
+}
+
+.labor ul li > div {
+  position: relative;
+  overflow: hidden;
+  width: 70%;
+  transition: transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
+}
+
+.labor ul li:hover > div {
+  transform: scale(1.025);
+}
+
+.labor ul li > div img {
+  position: absolute;
+  left: -5%;
+  top: -5%;
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  transition: transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
+}
+.labor ul li dl {
   width: 30%;
 }
 
-.labor ul li div img {
-  width: 100%;
+.labor ul li .cover {
+  position: absolute;
+  right: 0;
+  width: calc(30% + 22px);
+  height: 100%;
+  background: #f5efe2;
+  transition: 0.3s;
 }
-.labor ul li dl {
-  width: 70%;
+
+/* .labor ul li .masking_tape {
+  position: absolute;
+  left: 27%;
+  top: -6%;
+  transform: rotate(89deg);
+  width: 15%;
+  height: 13%;
+} */
+
+.labor ul li:nth-child(even) .cover {
+  right: auto;
+  left: 0;
 }
 
 .labor ul li dl dt {
   color: #666;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 50px;
+  font-family: "Gaegu", cursive;
+  /* opacity: 0; */
+  /* transform: translateX(-20%); */
+}
+
+.labor ul li:nth-child(even) dl dd {
+  /* transform: translateY(20%); */
 }
 
 .labor ul li dl dd {
+  position: relative;
   margin-top: 16px;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 2.5;
+  font-family: "NEXON Lv1 Gothic OTF";
+  /* opacity: 0; */
+  /* transform: translateY(-20%); */
+}
+
+section.animals {
+  width: 100%;
+  margin-top: 250px;
+}
+
+section.animals ul {
+}
+
+section.animals .row {
+}
+
+section.animals .row .row_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+section.animals .row .row_wrap > div {
+  width: 33%;
+}
+
+section.animals .row .row_wrap > div > img {
+  width: 100%;
 }
