@@ -33,6 +33,8 @@ $(function () {
   wheelAction.init();
 
   $(window).on("scroll", function () {
+    /*wheel seciton start*/
+
     // a가 b까지 변할때
     // c는 d까지 변한다.
     // a * ( d - c ) / b + c;
@@ -43,12 +45,31 @@ $(function () {
     // var d = 200;
 
     var a = $(window).scrollTop(),
-      b = $(document).height() - $(window).height(),
+      b = $("section.wheel").height() - $(window).height(),
       c = -50,
-      d = 50,
+      d = 30,
       valueT = (a * (d - c)) / b + c;
 
     $(".highlight").css("left", valueT + "%");
+    // console.log(valueT);
+
+    let e = $(window).scrollTop(),
+      f = $("section.animals").height() - $(window).height(),
+      g = -50,
+      h = 100,
+      valueA = ((e * (h - g)) / f + g) / 18;
+    let animals = $("section.animals .row .row_wrap img");
+
+    if (e > $("section.animals").offset().top - 200) {
+      /*animal seciton start*/
+
+      animals.css("transform", `translateY(${-Math.floor(valueA)}%)`);
+
+      console.log(Math.floor(valueA));
+      // console.log(animalEnd);
+    } else {
+      return false;
+    }
   });
 
   //Scroll top
@@ -71,7 +92,7 @@ $(function () {
     let $dt = $(".labor ul li dl dt");
     let dt = $(".labor ul li dl dt").offset().top - 500;
     let dd = $(".labor ul li dl dd").offset().top - 500;
-    let animalsT = $("section.animals").offset().top - 500;
+    let animalsT = $("section.animals").offset().top - 200;
 
     scTop > divTop1 ? $(".wrap2 div:first-child").addClass("on") : $(".wrap2 div:first-child").removeClass("on");
     scTop > divTop2 ? $(".wrap2 div:nth-child(2)").addClass("on") : $(".wrap2 div:nth-child(2)").removeClass("on");
@@ -113,10 +134,22 @@ $(function () {
 
     if (scTop > animalsT) {
       $("body").addClass("on");
+      $("section.animals .mainTit .mainTit_wrap").css({ display: "block" });
     } else {
       $("body").removeClass("on");
+      $("section.animals .mainTit .mainTit_wrap").css({ display: "none" });
     }
-  });
+
+    //동물파트 사진들은 스크롤 시 이동에 딜레이주기
+    //마우스휠 이벤트
+    //마우스휠 위로 -> 이미지 translateY(아래로) / 마우스 아래 -> 이미지 위로
+    // transform: translate(0%, 4.2428%) translate3d(0px, 0px, 0px);
+
+    // let animalImg = $("section.animals .row .row_wrap > div > img");
+    let possum = $("section.animals .row.row_possum .row_wrap .leftimg img");
+
+    // console.log(animalImg.offset().top);
+  }); //scroll event
 
   $(".labor ul li > div").mouseover(function () {
     $(this).siblings(".cover").css({ width: "0" });
