@@ -46,7 +46,7 @@ $(function () {
 
     var a = $(window).scrollTop(),
       b = $("section.wheel").height() - $(window).height(),
-      c = -50,
+      c = -100,
       d = 30,
       valueT = (a * (d - c)) / b + c;
 
@@ -57,7 +57,7 @@ $(function () {
       f = $("section.animals").height() - $(window).height(),
       g = -50,
       h = 100,
-      valueA = ((e * (h - g)) / f + g) / 18;
+      valueA = ((e * (h - g)) / f + g) / 2 - 125;
     let animals = $("section.animals .row .row_wrap img");
 
     if (e > $("section.animals").offset().top - 200) {
@@ -66,7 +66,6 @@ $(function () {
       animals.css("transform", `translateY(${-Math.floor(valueA)}%)`);
 
       console.log(Math.floor(valueA));
-      // console.log(animalEnd);
     } else {
       return false;
     }
@@ -88,6 +87,7 @@ $(function () {
     let $liSec = $(".labor ul li:nth-child(2)");
     let $liThird = $(".labor ul li:nth-child(3)");
     let $liFourth = $(".labor ul li:nth-child(4)");
+    let dishT = $(".dish").offset().top - 400;
     let $dd = $(".labor ul li dl dd");
     let $dt = $(".labor ul li dl dt");
     let dt = $(".labor ul li dl dt").offset().top - 500;
@@ -140,6 +140,12 @@ $(function () {
       $("section.animals .mainTit .mainTit_wrap").css({ display: "none" });
     }
 
+    if (scTop > dishT) {
+      $("body").addClass("pink");
+    } else {
+      $("body").removeClass("pink");
+    }
+
     //동물파트 사진들은 스크롤 시 이동에 딜레이주기
     //마우스휠 이벤트
     //마우스휠 위로 -> 이미지 translateY(아래로) / 마우스 아래 -> 이미지 위로
@@ -172,5 +178,29 @@ $(function () {
     y = e.clientY - ($(".labor ul li > div").height() / 2 + $(".labor ul li > div").position().top);
 
     $(".labor ul li > div img").attr({ style: "transform: translate(" + x / 20 + "px," + y / 20 + "px)" });
+  });
+
+  const cursor = $(".cursor");
+
+  //움직임 효과
+  $("section.dish").mousemove(function (e) {
+    gsap.to(cursor, 0.3, { left: e.pageX - 5, top: e.pageY - 5 });
+  });
+
+  //오버 효과
+  $("section.dish em").hover(
+    function () {
+      cursor.addClass("active");
+    },
+    function () {
+      cursor.removeClass("active");
+    }
+  );
+
+  $("section.dish").mouseenter(function () {
+    cursor.addClass("on");
+  });
+  $("section.dish").mouseleave(function () {
+    cursor.removeClass("on");
   });
 });

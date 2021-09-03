@@ -10,10 +10,17 @@
 body {
   background-color: rgba(216, 195, 143, 0.25);
   transition: 0.3s;
+  overflow-x: hidden ;
 }
 
 body.on {
   background: #8abb02b9;
+  transition: 0.5s;
+}
+
+body.pink {
+  background: #ed9cad;
+  transition: 0.5s;
 }
 
 .textVi {
@@ -410,9 +417,9 @@ div.on {
 .labor {
   overflow: hidden;
   position: relative;
-  width: 86%;
+  width: 95%;
   margin: 0 auto;
-  padding-bottom: 150px;
+  padding: 0 50px 150px 50px;
 }
 
 .labor .back_orange {
@@ -423,22 +430,24 @@ div.on {
 
 .labor .back_orange:nth-child(1) {
   top: 350px;
-  right: -5%;
+  right: -1%;
   transform: rotate(30deg);
 }
 .labor .back_orange:nth-child(2) {
   transform: rotate(-5deg);
-  top: 1000px;
+  top: 800px;
   left: 0;
+  transform: scale(.7);
 }
 .labor .back_orange:nth-child(3) {
+  right: 1%;
   transform: rotate(-15deg);
-  top: 1900px;
+  top: 1800px;
 }
 .labor .back_orange:nth-child(4) {
-  transform: rotate(35deg);
-  top: 2300px;
-  left: 0%;
+  transform: rotate(35deg) scale(.7);
+  top: 1800px;
+  left: 6%;
 }
 
 .labor .back_orange img {
@@ -711,11 +720,8 @@ section.animals .mainTit img.squ_png {
   transform: rotate(-18deg);
 }
 
-section.animals ul {
-}
-
 section.animals .row {
-  margin-top: 150px;
+  padding-top: 150px;
 }
 
 section.animals .row:nth-child(1){
@@ -763,8 +769,53 @@ section.animals .row .row_wrap .row_text p{
 section.animals .row .row_wrap .leftimg img, section.animals .row .row_wrap .rightimg img{
   transition: 0.5s cubic-bezier(.215, .61, .355, 1);
 }
+/*background*/
+section.animals .mainTit{
+  background: url("./img/animals/pngegg-(4)-flip.png") bottom 10% right 20% no-repeat;
+  background-size: 40%;
+}
+
+section.animals .row.row_kang{
+  background: url("./img/animals/pngegg (4).png") top left no-repeat;
+  background-size: 50%;
+}
+
+section.animals .row.row_spider{
+  background: url("./img/animals/pngegg-(4)-left.png") top left no-repeat;
+  background-size: 50%;
+}
+
+section.animals .row.row_spider .row_wrap{
+  background: url("./img/animals/pngwing.com (11).png") bottom -30% left -20% no-repeat;
+  background-size: 40%;
+}
+
+section.animals .row.row_possum{
+  background: url("./img/animals/pngegg-(4)-right.png") top right no-repeat;
+  background-size: 57%;
+}
+
+section.animals .row.row_possum .row_wrap{
+  background: url("./img/animals/pngegg-(4)-flip.png") bottom 30% right -5% no-repeat;
+  background-size: 45%;
+}
+
+section.animals .row.row_cat{
+  background: url("./img/animals/pngegg-(4)-left.png") top -35% left no-repeat;
+  background-size: 70%;
+}
+
+section.animals .row.row_cat .row_wrap{
+  background: url("./img/animals/pngwing.com (11).png") bottom left -20% no-repeat;
+  background-size: 50%;
+}
+
 
 /*kangaroo*/
+/* section.animals .row.row_kang .row_wrap{
+  background: url("./img/animals/pngwing(1).png") center center no-repeat;
+} */
+
 section.animals .row.row_kang .row_wrap .leftimg img{
   width: 80%;
   margin-left: 80px;
@@ -795,10 +846,23 @@ section.animals .row.row_spider .row_wrap .rightimg img{
 section.animals .row.row_possum .row_wrap .leftimg img{
   width: 90%;
   margin-left: 30px;
+  margin-top: 150px;
+}
+
+section.animals .row.row_possum .row_wrap .row_text{
+  transform: translateY(-70%);
 }
 
 
 /*cat*/
+section.animals .row.row_cat{
+  margin-top: 0;
+}
+
+section.animals .row.row_cat .row_wrap .row_text{
+  transform: translateY(-45%);
+}
+
 section.animals .row.row_cat .row_wrap .leftimg img{
   width: 80%;
   height: 50%;
@@ -824,3 +888,56 @@ section.animals .row.row_cat .row_wrap .rightimg img:nth-child(2){
   margin-left: 100px;
 }
 
+/*section.dish start*/
+
+section.dish .cursor {
+  display: none;
+  position: absolute;
+  width: 10px; height: 10px;
+  background: #fff;
+  background-size: contain;
+  border-radius: 50%;
+  z-index: 1000;
+  user-select: none;
+  pointer-events: none;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+  mix-blend-mode: difference;
+}
+section.dish .cursor.on{
+  display: block;
+}
+
+section.dish .cursor.active {
+  transform: scale(40);
+  background: url(./img/animals/spider1.jpg) center no-repeat;
+  background-size: cover;
+}
+
+section.dish .dish_content{
+  width: 80%;
+  margin: 150px auto 0;
+}
+
+section.dish .dish_content ul {
+  display: flex;
+  flex-direction: column;
+}
+
+section.dish .dish_content ul li p{
+  font-family: "Poor Story", cursive;
+  font-size: 130px;
+  font-weight: lighter;
+}
+
+section.dish .dish_content ul li:nth-child(odd){
+  text-align: left;
+}
+
+section.dish .dish_content ul li:nth-child(even){
+  text-align: right;
+}
+
+.hover_img{
+  display: none;
+}
