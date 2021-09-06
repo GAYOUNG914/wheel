@@ -65,9 +65,32 @@ $(function () {
 
       animals.css("transform", `translateY(${-Math.floor(valueA)}%)`);
 
-      console.log(Math.floor(valueA));
+      // console.log(Math.floor(valueA));
     } else {
       return false;
+    }
+
+    var i = $(window).scrollTop(),
+      j = $("section.dish").height() - $(window).height(),
+      k = 10,
+      l = 30,
+      valueM = (i * (l - k)) / j + k - 280;
+
+    $(".highlight_dish").css("right", valueM + "%");
+    $(".highlight_dish").css("transform", `scale(${valueM - 45})`);
+    // console.log(valueT);
+    console.log(valueM - 45);
+
+    if (valueM - 45 > 7) {
+      $(".highlight_dish").css({ display: "none" });
+    } else {
+      $(".highlight_dish").css({ display: "inline-block" });
+    }
+
+    if (valueM - 45 < 0) {
+      $(".highlight_dish").css({ display: "none" });
+    } else {
+      $(".highlight_dish").css({ display: "inline-block" });
     }
   });
 
@@ -88,10 +111,6 @@ $(function () {
     let $liThird = $(".labor ul li:nth-child(3)");
     let $liFourth = $(".labor ul li:nth-child(4)");
     let dishT = $(".dish").offset().top - 400;
-    let $dd = $(".labor ul li dl dd");
-    let $dt = $(".labor ul li dl dt");
-    let dt = $(".labor ul li dl dt").offset().top - 500;
-    let dd = $(".labor ul li dl dd").offset().top - 500;
     let animalsT = $("section.animals").offset().top - 200;
 
     scTop > divTop1 ? $(".wrap2 div:first-child").addClass("on") : $(".wrap2 div:first-child").removeClass("on");
@@ -149,11 +168,6 @@ $(function () {
     //동물파트 사진들은 스크롤 시 이동에 딜레이주기
     //마우스휠 이벤트
     //마우스휠 위로 -> 이미지 translateY(아래로) / 마우스 아래 -> 이미지 위로
-    // transform: translate(0%, 4.2428%) translate3d(0px, 0px, 0px);
-
-    // let animalImg = $("section.animals .row .row_wrap > div > img");
-    let possum = $("section.animals .row.row_possum .row_wrap .leftimg img");
-
     // console.log(animalImg.offset().top);
   }); //scroll event
 
@@ -181,21 +195,24 @@ $(function () {
   });
 
   const cursor = $(".cursor");
+  const hover_img = $(".hover_img ");
 
   //움직임 효과
   $("section.dish").mousemove(function (e) {
     gsap.to(cursor, 0.3, { left: e.pageX - 5, top: e.pageY - 5 });
+    gsap.to(hover_img, 0.3, { left: e.pageX - 150, top: e.pageY - 150 });
   });
 
   //오버 효과
-  $("section.dish em").hover(
-    function () {
-      cursor.addClass("active");
-    },
-    function () {
-      cursor.removeClass("active");
-    }
-  );
+  $("section.dish li .em").mouseenter(function () {
+    cursor.addClass("active");
+    $(this).children().addClass("on");
+  });
+  $("section.dish li .em").mouseleave(function () {
+    cursor.removeClass("active");
+    $(this).children().removeClass("on");
+  });
+  //em 안의 좌표 구해서 mouseenter mouseleave 먹이기
 
   $("section.dish").mouseenter(function () {
     cursor.addClass("on");
