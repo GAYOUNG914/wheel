@@ -72,22 +72,27 @@ $(function () {
 
     var i = $(window).scrollTop(),
       j = $("section.dish").height() - $(window).height(),
-      k = 10,
-      l = 30,
-      valueM = (i * (l - k)) / j + k - 280;
+      k = 15,
+      l = 1,
+      m = -150,
+      n = 100,
+      valueM = (i * (l - k)) / j + k + 250,
+      valueS = (i * (n - m)) / j + m - 4000;
 
-    $(".highlight_dish").css("right", valueM + "%");
-    $(".highlight_dish").css("transform", `scale(${valueM - 45})`);
-    // console.log(valueT);
-    console.log(valueM - 45);
+    // $(".highlight_dish").css("right", valueM + "%");
+    $(".highlight_dish").css("transform", `scale(${valueM})`);
 
-    if (valueM - 45 > 7) {
+    $(".dish_tit_wrap .star").css("transform", `rotate(${valueS}deg)`);
+    console.log(valueS);
+
+    if (valueM > 40) {
       $(".highlight_dish").css({ display: "none" });
+      return false;
     } else {
       $(".highlight_dish").css({ display: "inline-block" });
     }
 
-    if (valueM - 45 < 0) {
+    if (valueM < 0) {
       $(".highlight_dish").css({ display: "none" });
     } else {
       $(".highlight_dish").css({ display: "inline-block" });
@@ -182,12 +187,6 @@ $(function () {
   let y = 0;
 
   $(".labor ul li > div").mousemove(function (e) {
-    //좌표값 중앙을 0으로 초기화
-    //x = 컨텐츠 박스의 width()/2 + 왼쪽의 여백값
-    //y = 컨텐츠 박스의 height()/2 + 윗쪽의 여백값
-
-    // let x =  $(".move-image").width()/2;
-    // let y =  $(".move-image").position().left;
     x = e.clientX - ($(".labor ul li > div").width() / 2 + $(".labor ul li > div").position().left);
     y = e.clientY - ($(".labor ul li > div").height() / 2 + $(".labor ul li > div").position().top);
 

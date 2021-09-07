@@ -894,10 +894,29 @@ section.dish {
 }
 
 .dish_tit_wrap {
+  position: relative;
   padding: 0 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.dish_tit_wrap .star {
+  position: absolute;
+  color: red;
+  text-shadow: 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.dish_tit_wrap .star1 {
+  top: 0;
+  left: 5%;
+  font-size: 200px;
+}
+
+.dish_tit_wrap .star2 {
+  bottom: 30%;
+  right: 5%;
+  font-size: 130px;
 }
 
 .dish_tit_wrap .dish_title {
@@ -927,11 +946,12 @@ section.dish {
 .dish_tit_wrap .dish_title .highlight_dish {
   position: absolute;
   top: 40%;
-  font-size: 10px;
+  left: 38%;
+  font-size: 15px;
   /* font-family: "Poor Story", cursive; */
   letter-spacing: 3px;
   color: #f3f3f3;
-  text-shadow: 1px 1px 0px #000;
+  text-shadow: 1px 1px 0px #111;
 }
 
 .dish_tit_wrap .dish_title span section.dish .cursor {
@@ -971,6 +991,11 @@ section.dish .dish_content ul {
 
 section.dish .dish_content ul li {
   display: inline-block;
+  /* margin-top: 5%; */
+}
+
+section.dish .dish_content ul li:nth-child(3) {
+  margin-left: 10%;
 }
 
 section.dish .dish_content ul li:nth-child(1) .hover_img video {
