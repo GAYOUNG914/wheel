@@ -64,7 +64,7 @@ $(function () {
             $(".highlight_dish").css("transform", `scale(${valueM})`);
 
             $(".dish_tit_wrap .star").css("transform", `rotate(${valueS}deg)`);
-            console.log(valueS);
+            // console.log(valueS);
 
             if (valueM > 40) {
                 $(".highlight_dish").css({ display: "none" });
@@ -105,27 +105,10 @@ $(function () {
                 dishT = $(".dish").offset().top - 400,
                 animalsT = $("section.animals").offset().top - 200;
 
-            // switch (scTop > divTop1) {
-            //     case scTop > divTop1:
-            //         $(".wrap2 div:first-child").addClass("on");
-            //         break;
-
-            //     default:
-            //         $(".wrap2 div:first-child").removeClass("on");
-            //         break;
-            // }
-            scTop > divTop1
-                ? $(".wrap2 div:nth-child(1)").addClass("on")
-                : $(".wrap2 div:nth-child(1)").removeClass("on");
-            scTop > divTop2
-                ? $(".wrap2 div:nth-child(2)").addClass("on")
-                : $(".wrap2 div:nth-child(2)").removeClass("on");
-            scTop > divTop3
-                ? $(".wrap2 div:nth-child(3)").addClass("on")
-                : $(".wrap2 div:nth-child(3)").removeClass("on");
-            scTop > divTop4
-                ? $(".wrap2 div:nth-child(4)").addClass("on")
-                : $(".wrap2 div:nth-child(4)").removeClass("on");
+            scTop > divTop1 ? $(".wrap2 div:nth-child(1)").addClass("on") : $(".wrap2 div:nth-child(1)").removeClass("on");
+            scTop > divTop2 ? $(".wrap2 div:nth-child(2)").addClass("on") : $(".wrap2 div:nth-child(2)").removeClass("on");
+            scTop > divTop3 ? $(".wrap2 div:nth-child(3)").addClass("on") : $(".wrap2 div:nth-child(3)").removeClass("on");
+            scTop > divTop4 ? $(".wrap2 div:nth-child(4)").addClass("on") : $(".wrap2 div:nth-child(4)").removeClass("on");
 
             scTop > $(".wrap1 > div").offset().top - 100
                 ? $(".wrap2 > div, .highlight").addClass("active")
@@ -134,8 +117,7 @@ $(function () {
             scTop > videoVi ? $(".textVi").addClass("on") : $(".textVi").removeClass("on");
 
             scTop > laborH
-                ? ($(".wrap2 > div, .highlight").removeClass("active"),
-                  $(".wrap2 > div").css({ bottom: "0", top: "auto" }))
+                ? ($(".wrap2 > div, .highlight").removeClass("active"), $(".wrap2 > div").css({ bottom: "0", top: "auto" }))
                 : $(".wrap2 > div").css({ bottom: "auto", top: "0" });
 
             scTop > laborT
@@ -197,22 +179,15 @@ $(function () {
             });
 
             //오버 효과
-            $("section.dish li .em").mouseenter(function () {
-                cursor.addClass("active");
-                $(this).children().addClass("on");
-            });
-            $("section.dish li .em").mouseleave(function () {
-                cursor.removeClass("active");
-                $(this).children().removeClass("on");
-            });
-            //em 안의 좌표 구해서 mouseenter mouseleave 먹이기
-
-            $("section.dish").mouseenter(function () {
-                cursor.addClass("on");
-            });
-            $("section.dish").mouseleave(function () {
-                cursor.removeClass("on");
-            });
+            $("section.dish li .em")
+                .mouseenter(function () {
+                    $(this).addClass("on");
+                    $(this).next().addClass("on");
+                })
+                .mouseleave(function () {
+                    $(this).removeClass("on");
+                    $(this).next().removeClass("on");
+                });
         },
     };
     dishSection.init();
